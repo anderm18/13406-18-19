@@ -58,27 +58,9 @@ public class Drive extends OpMode
         rightFront.setPower(rightPower);
         leftBack.setPower(leftPower);
         rightBack.setPower(rightPower);
-
-        double leftRight = gamepad1.left_stick_x;
-
-
-
-        if(leftRight > 0){
-            leftFront.setPower(1);
-            leftBack.setPower(-1);
-            rightFront.setPower(-1);
-            rightBack.setPower(1);
-
         }
 
-        if(leftRight > 0){
-            leftFront.setPower(-1);
-            leftBack.setPower(1);
-            rightFront.setPower(1);
-            rightBack.setPower(-1);
-        }
 
-    }
 
     @Override
     public void stop() {
