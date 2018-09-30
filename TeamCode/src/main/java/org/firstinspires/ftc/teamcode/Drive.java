@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
+@TeleOp(name="Drive", group="13406")
 public class Drive extends OpMode
 {
 
@@ -58,7 +58,7 @@ public class Drive extends OpMode
         rightFront.setPower(rightPower);
         leftBack.setPower(leftPower);
         rightBack.setPower(rightPower);
-        }
+    }
 
 
 

@@ -99,7 +99,9 @@ android {
 
 repositories {
     flatDir {
-        dirs rootProject.file('libs')
+        dirs rootProject.file('libs'),
+             rootProject.file('libs/opencv-native/3rdparty/libs/armeabi-v7a'),
+             rootProject.file('libs/opencv-native/libs/armeabi-v7a')
     }
 }
 apply from: 'build.release.gradle'
