@@ -6,8 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Drive", group="13406")
-public class Drive extends OpMode
-{
+public class Drive extends OpMode {
 
     private DcMotor leftFront = null;
     private DcMotor rightFront = null;
@@ -48,8 +47,8 @@ public class Drive extends OpMode
         double rightPower;
 
 
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.right_stick_x;
+        double drive = gamepad1.left_stick_y;
+        double turn  =  -gamepad1.right_stick_x;
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
