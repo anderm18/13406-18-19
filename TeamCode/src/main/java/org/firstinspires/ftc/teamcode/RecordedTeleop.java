@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import android.content.Context;
 import com.github.pmtischler.base.BlackBox;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.sun.tools.javac.util.Position;
+
 import java.io.FileOutputStream;
 
 @TeleOp(name="RecordedTeleop", group="1")
@@ -36,6 +38,9 @@ public class RecordedTeleop extends Drive {
             recorder.record("rightFront", time);
             recorder.record("leftBack", time);
             recorder.record("rightBack", time);
+            recorder.record("rightScoop", time);
+            recorder.record("leftScoop", time);
+            recorder.record("mainScoop", time);
         } catch (Exception e) {
             e.printStackTrace();
             requestOpModeStop();

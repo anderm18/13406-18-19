@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Drive", group="13406")
@@ -12,6 +13,9 @@ public class Drive extends OpMode {
     private DcMotor rightFront = null;
     private DcMotor leftBack = null;
     private DcMotor rightBack = null;
+    private DcMotor rightScoop = null;
+    private DcMotor leftScoop = null;
+    private DcMotor mainScoop = null;
 
     @Override
     public void init() {
@@ -21,12 +25,18 @@ public class Drive extends OpMode {
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
+        rightScoop = hardwareMap.get(DcMotor.class, "rightScoop");
+        leftScoop = hardwareMap.get(DcMotor.class, "leftScoop");
+        mainScoop = hardwareMap.get(DcMotor.class, "mainScoop");
 
 
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setDirection(DcMotor.Direction.FORWARD);
         rightBack.setDirection(DcMotor.Direction.REVERSE);
+        leftScoop.setDirection(DcMotor.Direction.FORWARD);
+        rightScoop.setDirection(DcMotor.Direction.REVERSE);
+        mainScoop.setDirection(DcMotor.Direction.FORWARD);
 
     }
 
@@ -48,7 +58,7 @@ public class Drive extends OpMode {
 
 
         double drive = gamepad1.left_stick_y;
-        double turn  =  -gamepad1.right_stick_x;
+        double turn  = gamepad1.right_stick_x;
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
@@ -57,6 +67,18 @@ public class Drive extends OpMode {
         rightFront.setPower(rightPower);
         leftBack.setPower(leftPower);
         rightBack.setPower(rightPower);
+        rightScoop.setPower(gamepad2.right_stick_y);
+        leftScoop.setPower(gamepad2.left_stick_y);
+
+        if (gamepad2.left_trigger > 0){
+            mainScoop.setPower(1);
+
+        }
+
+        if (gamepad2.right_trigger > 0){
+            mainScoop.setPower(-1);
+        }
+
     }
 
 
