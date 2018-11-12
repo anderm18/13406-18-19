@@ -21,7 +21,7 @@ public class Drive extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        leftFront  = hardwareMap.get(DcMotor.class, "leftFront");
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
@@ -57,31 +57,22 @@ public class Drive extends OpMode {
         double rightPower;
 
 
-        double drive = gamepad1.left_stick_y;
-        double turn  = gamepad1.right_stick_x;
-        leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-        rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+        double drive = -gamepad1.left_stick_y;
+        double turn = -gamepad1.right_stick_x;
+        leftPower = Range.clip(drive + turn, -1.0, 1.0);
+        rightPower = Range.clip(drive - turn, -1.0, 1.0);
 
 
         leftFront.setPower(leftPower);
         rightFront.setPower(rightPower);
         leftBack.setPower(leftPower);
         rightBack.setPower(rightPower);
-        rightScoop.setPower(gamepad2.right_stick_y);
-        leftScoop.setPower(gamepad2.left_stick_y);
-
-        if (gamepad2.left_trigger > 0){
-            mainScoop.setPower(1);
-
-        }
-
-        if (gamepad2.right_trigger > 0){
-            mainScoop.setPower(-1);
-        }
+        rightScoop.setPower(gamepad2.right_stick_y*2/3);
+        leftScoop.setPower(gamepad2.left_stick_y*2/3);
+        mainScoop.setPower(gamepad2.left_trigger*3/4);
+        mainScoop.setPower(-gamepad2.right_trigger*3/4);
 
     }
-
-
 
     @Override
     public void stop() {
