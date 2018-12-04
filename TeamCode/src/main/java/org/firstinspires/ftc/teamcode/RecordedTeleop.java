@@ -36,11 +36,13 @@ public class RecordedTeleop extends Drive {
 
             recorder.record("leftFront", time);
             recorder.record("rightFront", time);
-            recorder.record("leftBack", time);
             recorder.record("rightBack", time);
+            recorder.record("leftBack", time);
             recorder.record("rightScoop", time);
             recorder.record("leftScoop", time);
             recorder.record("mainScoop", time);
+            recorder.record("yeetus", time);
+
         } catch (Exception e) {
             e.printStackTrace();
             requestOpModeStop();

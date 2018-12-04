@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="Drive", group="13406")
-public class Drive extends OpMode {
+@TeleOp(name="AutoTest", group="13406")
+public class AutoTest extends OpMode {
 
     private DcMotor leftFront = null;
     private DcMotor rightFront = null;
@@ -65,13 +65,13 @@ public class Drive extends OpMode {
         rightPower = Range.clip(drive - turn, -1.0, 1.0);
 
 
-        leftFront.setPower(leftPower);
-        rightFront.setPower(rightPower);
-        leftBack.setPower(leftPower);
-        rightBack.setPower(rightPower);
+        leftFront.setPower(leftPower/2);
+        rightFront.setPower(rightPower/2);
+        leftBack.setPower(leftPower/2);
+        rightBack.setPower(rightPower/2);
         rightScoop.setPower(gamepad2.right_stick_y*2/3);
         leftScoop.setPower(gamepad2.left_stick_y*2/3);
-        mainScoop.setPower(gamepad2.left_trigger*3/4);
+        mainScoop.setPower(gamepad2.left_trigger*.5);
         mainScoop.setPower(-gamepad2.right_trigger*3/4);
         yeetus.setPower(gamepad1.right_trigger*2/3);
         yeetus.setPower(-gamepad1.left_trigger*2/3);

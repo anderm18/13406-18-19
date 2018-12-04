@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="Drive", group="13406")
-public class Drive extends OpMode {
+@TeleOp(name="EC", group="13406")
+public class EncoderCircle extends OpMode {
 
     private DcMotor leftFront = null;
     private DcMotor rightFront = null;
@@ -75,6 +75,9 @@ public class Drive extends OpMode {
         mainScoop.setPower(-gamepad2.right_trigger*3/4);
         yeetus.setPower(gamepad1.right_trigger*2/3);
         yeetus.setPower(-gamepad1.left_trigger*2/3);
+
+        int position = mainScoop.getCurrentPosition();
+        telemetry.addData("Encoder Position", position);
     }
 
     @Override
