@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name= "Autono", group = "1")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name= "AutonomousTime", group = "1")
 public class Autono extends LinearOpMode {
 
     private DcMotor leftFront = null;
