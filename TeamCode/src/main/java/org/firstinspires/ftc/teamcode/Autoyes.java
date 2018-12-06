@@ -1,4 +1,3 @@
-//IF YOU ARE JUST STARTING OUT AND ARE LEARNING, START WITH TRYING TO UNDERSTAND EVERYTHING BELOW LINE 184
 
 package org.firstinspires.ftc.teamcode;
 
@@ -28,12 +27,9 @@ public class Autoyes extends LinearOpMode {
     DistanceSensor sensorDistance = null;
     int Ticks = 1120;
 
-    public void down() {
+    public void DownControl() {
 
         lifter.setPower(-1);
-        sleep(3250);
-        lifter.setPower(0);
-        sleep(1000);
 
     }
 
@@ -89,26 +85,9 @@ public class Autoyes extends LinearOpMode {
 
 
 
-    public void CTurnR(){
-
-        leftFront.setPower(-.5);
-        leftBack.setPower(-.5);
-        rightBack.setPower(.5);
-        rightFront.setPower(.5);
-
-    }
-
     public void CTurnL(){
 
-        leftFront.setPower(.5);
-        leftBack.setPower(.5);
-        rightBack.setPower(-.5);
-        rightFront.setPower(-.5);
-
-    }
-
-    public void TL90Distance(){
-        double d = 1120*.5;
+        mainUp();
 
         //Reset Encoders
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -116,12 +95,94 @@ public class Autoyes extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        int newTarget = leftFront.getTargetPosition() + leftBack.getTargetPosition() + rightFront.getTargetPosition() +rightBack.getTargetPosition() + (int)d;
+
         //Set target pos.
-        leftFront.setTargetPosition(newTarget);
-        leftBack.setTargetPosition(newTarget);
-        rightBack.setTargetPosition(newTarget);
-        rightFront.setTargetPosition(newTarget);
+        leftFront.setTargetPosition(-Ticks*2);
+        leftBack.setTargetPosition(-Ticks*2);
+        rightBack.setTargetPosition(Ticks*2);
+        rightFront.setTargetPosition(Ticks*2);
+
+        //set to RUN_TO_POSITION
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Drive Left
+        TurnLeft();
+
+        while (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy() )
+        {
+            //wait until target position is reached
+        }
+
+        //Stop and change modes back to normal
+        Stop();
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+
+    public void CTurnR(){
+
+        mainUp();
+
+        //Reset Encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+        //Set target pos.
+        leftFront.setTargetPosition(Ticks*2);
+        leftBack.setTargetPosition(Ticks*2);
+        rightBack.setTargetPosition(-Ticks*2);
+        rightFront.setTargetPosition(-Ticks*2);
+
+        //set to RUN_TO_POSITION
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Drive Left
+        TurnLeft();
+
+        while (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy() )
+        {
+            //wait until target position is reached
+        }
+
+        //Stop and change modes back to normal
+        Stop();
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+
+    public void TL90Distance(){
+
+        mainUp();
+
+        //Reset Encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+        //Set target pos.
+        leftFront.setTargetPosition(-Ticks);
+        leftBack.setTargetPosition(-Ticks);
+        rightBack.setTargetPosition(Ticks);
+        rightFront.setTargetPosition(Ticks);
 
         //set to RUN_TO_POSITION
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -146,7 +207,9 @@ public class Autoyes extends LinearOpMode {
 
     }
 
-    public void TRDistance(int r){
+    public void TR90Distance(){
+
+        mainUp();
 
         //Reset Encoders
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -155,10 +218,10 @@ public class Autoyes extends LinearOpMode {
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set target pos.
-        leftFront.setTargetPosition(r);
-        leftBack.setTargetPosition(r);
-        rightBack.setTargetPosition(-r);
-        rightFront.setTargetPosition(-r);
+        leftFront.setTargetPosition(Ticks);
+        leftBack.setTargetPosition(Ticks);
+        rightBack.setTargetPosition(-Ticks);
+        rightFront.setTargetPosition(-Ticks);
 
         //set to RUN_TO_POSITION
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -168,6 +231,45 @@ public class Autoyes extends LinearOpMode {
 
         //Drive Right
         TurnRight();
+
+        while (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())
+        {
+            //wait until target position is reached
+        }
+
+        //Stop and change modes back to normal
+        Stop();
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+
+    public void DFDistance(){
+
+        mainUp();
+
+        //Reset Encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set target pos.
+        leftFront.setTargetPosition(Ticks);
+        leftBack.setTargetPosition(Ticks);
+        rightBack.setTargetPosition(Ticks);
+        rightFront.setTargetPosition(Ticks);
+
+        //set to RUN_TO_POSITION
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Drive Forward
+        Forward();
 
         while (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy() )
         {
@@ -183,7 +285,26 @@ public class Autoyes extends LinearOpMode {
 
     }
 
-    public void DFDistance(int r){
+    public void down() {
+
+        lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lifter.setTargetPosition(Ticks * 3);
+        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        DownControl();
+
+        while (lifter.isBusy()) {
+            //wait until target position is reached
+        }
+
+        Stop();
+        lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+
+    public void DBDistance(){
+
+        mainUp();
 
         //Reset Encoders
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -192,10 +313,10 @@ public class Autoyes extends LinearOpMode {
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set target pos.
-        leftFront.setTargetPosition(r);
-        leftBack.setTargetPosition(r);
-        rightBack.setTargetPosition(r);
-        rightFront.setTargetPosition(r);
+        leftFront.setTargetPosition(-Ticks);
+        leftBack.setTargetPosition(-Ticks);
+        rightBack.setTargetPosition(-Ticks);
+        rightFront.setTargetPosition(-Ticks);
 
         //set to RUN_TO_POSITION
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -203,8 +324,8 @@ public class Autoyes extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Drive Forward
-        Forward();
+        //Drive Backward
+        Backward();
 
         while (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy() )
         {
@@ -307,44 +428,37 @@ public class Autoyes extends LinearOpMode {
         //They are at the top
 
         down();
-        Forward(200);
-        mainUp();
-        TRDistance(.25);
+        DFDistance();
+        TR90Distance();
         sleep(200);
-        mainUp();
-        Backward(400);
-        mainUp();
-        Turn360();
-        Forward(600);
+        DBDistance();
+        CTurnR();
+        DFDistance();
         sleep(1500);
         int RGB = sensorColor.red() + sensorColor.blue() + sensorColor.green();
         if (RGB >= 100){
 
-            mainUp();
-            TurnRight90();
-            mainUp();
-            Forward(500);
-            mainUp();
-            TurnLeft90();
+            TR90Distance();
+            DFDistance();
+
+            TR90Distance();
             int RGB1 = sensorColor.red() + sensorColor.blue() + sensorColor.green();
             if (RGB1 >= 100) {
 
-                mainUp();
-                TurnRight90();
-                mainUp();
-                Forward(500);
-                mainUp();
-                TurnLeft90();
-                Forward(500);
+                TR90Distance();
+                DFDistance();
+
+                TL90Distance();
+                DFDistance();
             }
             else{
 
-                Forward(500);
+                DFDistance();
             }
         }
         else{
 
-            Forward(500);
+            DFDistance();
         }
 
         stop();
