@@ -39,7 +39,6 @@ public class AutoTest extends OpMode {
         leftScoop.setDirection(DcMotor.Direction.FORWARD);
         rightScoop.setDirection(DcMotor.Direction.REVERSE);
         mainScoop.setDirection(DcMotor.Direction.FORWARD);
-
     }
 
 

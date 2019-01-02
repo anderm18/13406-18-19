@@ -399,70 +399,12 @@ public class Autoyes extends LinearOpMode {
 
 
 
-        while (opModeIsActive()) {
-            sensorColor.red();
-            sensorColor.green();
-            sensorColor.blue();
-
-            sensorColor.alpha();
-            sensorColor.argb();
-
-            int RGB = sensorColor.red() + sensorColor.green() + sensorColor.blue();
-            Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
-                    (int) (sensorColor.green() * SCALE_FACTOR),
-                    (int) (sensorColor.blue() * SCALE_FACTOR),
-                    hsvValues);
-            telemetry.addData("RGB", RGB); //This is for display purposes, dont worry about it
-            //yellow = 90, 110, 140, 130, 145, mean of 70
-            //white = 200, 200, 240, 280, 330, mean of 100
-
-
-        }
-
-
-
-
-
 
 //For all my little Java learners, I made this very simple. Once you are ready to find out what everything means, see the methods describing the variables
         //They are at the top
 
-        down();
-        DFDistance();
-        TR90Distance();
-        sleep(200);
-        DBDistance();
-        CTurnR();
-        DFDistance();
-        sleep(1500);
-        int RGB = sensorColor.red() + sensorColor.blue() + sensorColor.green();
-        if (RGB >= 100){
-
-            TR90Distance();
-            DFDistance();
-
-            TR90Distance();
-            int RGB1 = sensorColor.red() + sensorColor.blue() + sensorColor.green();
-            if (RGB1 >= 100) {
-
-                TR90Distance();
-                DFDistance();
-
-                TL90Distance();
-                DFDistance();
-            }
-            else{
-
-                DFDistance();
-            }
-        }
-        else{
-
-            DFDistance();
-        }
-
-        stop();
-
+       // down();
+        TL90Distance();
 
 
 

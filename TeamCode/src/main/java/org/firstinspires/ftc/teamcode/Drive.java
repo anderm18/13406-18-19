@@ -18,6 +18,7 @@ public class Drive extends OpMode {
     private DcMotor leftScoop = null;
     private DcMotor mainScoop = null;
     private CRServo yeetus = null;
+    private DcMotor lifter = null;
 
     @Override
     public void init() {
@@ -31,6 +32,7 @@ public class Drive extends OpMode {
         leftScoop = hardwareMap.get(DcMotor.class, "leftScoop");
         mainScoop = hardwareMap.get(DcMotor.class, "mainScoop");
         yeetus = hardwareMap.get(CRServo.class, "yeetus");
+        lifter = hardwareMap.get(DcMotor.class, "lifter");
 
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
@@ -54,6 +56,20 @@ public class Drive extends OpMode {
 
     @Override
     public void loop() {
+
+        if (gamepad2.dpad_down == true){
+
+            lifter.setPower(.5);
+        }
+        if (gamepad2.dpad_up == true){
+
+            lifter.setPower(-.5);
+        }
+        if (gamepad2.a == true){
+
+            lifter.setPower(0);
+        }
+
 
         double leftPower;
         double rightPower;
